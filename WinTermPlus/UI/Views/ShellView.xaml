@@ -1,0 +1,14 @@
+﻿<Window x:Class="WinTermPlus.UI.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        xmlns:cal="http://www.caliburnproject.org"
+        Title="ShellView" 
+        Height="200" 
+        Width="365">
+    <Grid>
+        <Frame cal:Message.Attach="RegisterFrame($source)" DataContext="{x:Null}" />
+    </Grid>
+</Window>

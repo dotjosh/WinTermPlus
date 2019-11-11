@@ -1,0 +1,87 @@
+﻿<Page  x:Class="WinTermPlus.UI.Views.ConfigView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:WinTermPlus.UI.ViewModels"
+         xmlns:cal="http://www.caliburnproject.org"
+         mc:Ignorable="d">
+    <Grid Background="{StaticResource NormalBackground}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <CheckBox Grid.Row="0"
+                      Content="Start With Windows" 
+                      x:Name="StartWithWindows">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox> 
+            
+            <CheckBox Grid.Row="1"
+                      Content="Quake Mode (CTRL + ~)" 
+                      x:Name="QuakeMode"
+                      Margin="0 10 0 0">
+                <CheckBox.LayoutTransform>
+                    <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
+                </CheckBox.LayoutTransform>
+            </CheckBox>
+
+            <Grid Margin="30 0 0 0" 
+                  Grid.Row="2"
+                  Visibility="{Binding QuakeMode, Converter={StaticResource BooleanToVisibilityConverter}}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Margin="0 8 0 0"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Label Margin="0" Padding="0" Content="Width: "/>
+                    <Label Margin="0" Padding="0" Content="{Binding Width, Converter={StaticResource StringToPercentageConverter}}" />
+                    <Label Margin="0" Padding="0" Content="% " />
+                </StackPanel>
+                <Slider  Grid.Row="0" Grid.Column="1"
+                         x:Name="Width"
+                         VerticalAlignment="Bottom"
+                         Minimum="1" Maximum="100" 
+                         Interval="1"/>
+
+                <StackPanel Grid.Row="1"
+                            Margin="0 10 0 0"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Label Margin="0" Padding="0" Content="Height: " />
+                    <Label Margin="0" Padding="0" Content="{Binding Height, Converter={StaticResource StringToPercentageConverter}}" />
+                    <Label Margin="0" Padding="0" Content="% " />
+                </StackPanel>
+                <Slider Grid.Row="1" Grid.Column="1"
+                          x:Name="Height"
+                          Interval="1"
+                          VerticalAlignment="Bottom"
+                          Minimum="1" Maximum="100" />
+            </Grid>
+        </Grid>
+
+        <Button Grid.Row="1" 
+                HorizontalAlignment="Right" 
+                Padding="13 5"
+                Margin="20 0 20 10" 
+                x:Name="Done">Done</Button>
+    </Grid>
+</Page>
