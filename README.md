@@ -7,5 +7,5 @@ Any other good ideas to improve Windows Terminal (that aren't being done officia
 * Runs in system tray
 * Quake-Mode (CTRL+~) global shortcut to minimize/restore Windows Terminal
 	* Adjust window width/height
-
+![Animated Example](AnimatedExample1.gif)
 ![Settings Screenshot](Screenshot1.png)
