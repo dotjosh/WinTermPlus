@@ -5,6 +5,7 @@ namespace WinTermPlus
     public class Config
     {
         public WindowSize Size => new WindowSize(new Percentage(Width), new Percentage(Height));
+        public WindowPosition Position => new WindowPosition(PositionX, PositionY);
 
         public bool QuakeMode
         {
@@ -32,6 +33,26 @@ namespace WinTermPlus
             set
             {
                 Properties.Settings.Default.Width = value; 
+                Save();
+            }
+        }
+
+        public int PositionX
+        {
+            get => Properties.Settings.Default.PositionX;
+            set
+            {
+                Properties.Settings.Default.PositionX = value;
+                Save();
+            }
+        }
+
+        public int PositionY
+        {
+            get => Properties.Settings.Default.PositionY;
+            set
+            {
+                Properties.Settings.Default.PositionY = value;
                 Save();
             }
         }

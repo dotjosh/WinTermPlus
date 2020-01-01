@@ -40,11 +40,11 @@ namespace WinTermPlus.UI.ViewModels
             if(windowsTerminalProcess == null)
             {
                 windowsTerminalProcess = WindowsTerminalProcess.Launch();
-                windowsTerminalProcess.Show(_settings.Size);
+                windowsTerminalProcess.Show(_settings.Size, _settings.Position);
             }
             else
             {
-                windowsTerminalProcess.ToggleVisibility(_settings.Size);
+                windowsTerminalProcess.ToggleVisibility(_settings.Size, _settings.Position);
             }
         }
     }
