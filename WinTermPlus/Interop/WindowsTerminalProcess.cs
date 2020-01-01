@@ -46,7 +46,7 @@ namespace WinTermPlus.Interop
             return true;
         }
 
-        public void ToggleVisibility(WindowSize size)
+        public void ToggleVisibility(WindowSize size, WindowPosition position)
         {
             if (IsFocused)
             {
@@ -54,17 +54,17 @@ namespace WinTermPlus.Interop
             }
             else
             {
-                Show(size);
+                Show(size, position);
             }
         }
 
-        public void Show(WindowSize size)
+        public void Show(WindowSize size, WindowPosition position)
         {
             RunOnHandle(handle =>
             {
                 PInvoke.ShowWindow(handle, ShowWindowCommands.Restore);
                 PInvoke.SetForegroundWindow(handle);
-                ResizeAndPositionWindow(handle, size);
+                ResizeAndPositionWindow(handle, size, position);
             });
         }
 
@@ -75,14 +75,13 @@ namespace WinTermPlus.Interop
             );
         }
 
-        private void ResizeAndPositionWindow(IntPtr handle, WindowSize size)
+        private void ResizeAndPositionWindow(IntPtr handle, WindowSize size, WindowPosition windowPosition)
         {
             var primaryScreenBounds = Screen.PrimaryScreen.Bounds;
             var width = (int)Math.Floor(primaryScreenBounds.Width * size.Width.ToDouble());
-            var x = (primaryScreenBounds.Width - width) / 2;
             var height = (int)Math.Floor(primaryScreenBounds.Height * size.Height.ToDouble());
 
-            PInvoke.MoveWindow(handle, x, 0, width, height, true);
+            PInvoke.MoveWindow(handle, windowPosition.X, windowPosition.Y, width, height, true);
         }
 
         public static WindowsTerminalProcess Get()
@@ -107,9 +106,9 @@ namespace WinTermPlus.Interop
             return new WindowsTerminalProcess(process);
         }
 
-        public void ResizeAndPositionWindow(WindowSize windowSize)
+        public void ResizeAndPositionWindow(WindowSize windowSize, WindowPosition windowPosition)
         {
-            RunOnHandle(handle => ResizeAndPositionWindow(handle, windowSize));
+            RunOnHandle(handle => ResizeAndPositionWindow(handle, windowSize, windowPosition));
         }
     }
 }

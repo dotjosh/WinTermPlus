@@ -11,8 +11,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid Margin="20">
+        <Grid Margin="10" UseLayoutRounding="False">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -24,8 +25,8 @@
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="1.2" ScaleY="1.2" />
                 </CheckBox.LayoutTransform>
-            </CheckBox> 
-            
+            </CheckBox>
+
             <CheckBox Grid.Row="1"
                       Content="Quake Mode (CTRL + ~)" 
                       x:Name="QuakeMode"
@@ -40,6 +41,8 @@
                   Visibility="{Binding QuakeMode, Converter={StaticResource BooleanToVisibilityConverter}}">
 
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
@@ -59,11 +62,11 @@
                 <Slider  Grid.Row="0" Grid.Column="1"
                          x:Name="Width"
                          VerticalAlignment="Bottom"
-                         Minimum="1" Maximum="100" 
+                         Minimum="1" Maximum="120"
                          Interval="1"/>
 
                 <StackPanel Grid.Row="1"
-                            Margin="0 10 0 0"
+                            Margin="0 8 0 0"
                             Orientation="Horizontal"
                             HorizontalAlignment="Right">
                     <Label Margin="0" Padding="0" Content="Height: " />
@@ -74,14 +77,42 @@
                           x:Name="Height"
                           Interval="1"
                           VerticalAlignment="Bottom"
-                          Minimum="1" Maximum="100" />
+                          Minimum="1" Maximum="120" />
+
+                <StackPanel Grid.Row="2"
+                            Margin="0 8 0 0"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Label Margin="0" Padding="0" Content="X Offset: "/>
+                    <Label Margin="0" Padding="0" Content="{Binding PositionX}" />
+                    <Label Margin="0" Padding="0" Content="" />
+                </StackPanel>
+                <Slider  Grid.Row="2" Grid.Column="1"
+                         x:Name="PositionX"
+                         VerticalAlignment="Bottom"
+                         Minimum="-100" Maximum="100" 
+                         Interval="1" SmallChange="0"/>
+
+                <StackPanel Grid.Row="3"
+                            Margin="0,8,0,0"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right">
+                    <Label Margin="0" Padding="0" Content="Y Offset: "/>
+                    <Label Margin="0" Padding="0" Content="{Binding PositionY}" />
+                    <Label Margin="0" Padding="0" Content="" />
+                </StackPanel>
+                <Slider Grid.Row="3" Grid.Column="1"
+                          x:Name="PositionY"
+                          Interval="1"
+                          VerticalAlignment="Bottom"
+                          Minimum="-100" Maximum="100" SmallChange="0" />
             </Grid>
         </Grid>
 
         <Button Grid.Row="1" 
                 HorizontalAlignment="Right" 
                 Padding="13 5"
-                Margin="20 0 20 10" 
+                Margin="20,5" 
                 x:Name="Done">Done</Button>
     </Grid>
 </Page>

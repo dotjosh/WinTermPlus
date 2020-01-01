@@ -43,6 +43,27 @@ namespace WinTermPlus.UI.ViewModels
                 NotifyOfPropertyChange(nameof(Height));
             }
         }
+
+        public int PositionX
+        {
+            get => _config.PositionX;
+            set
+            {
+                _config.PositionX = value;
+                NotifyOfPropertyChange(nameof(PositionX));
+            }
+        }
+
+        public int PositionY
+        {
+            get => _config.PositionY;
+            set
+            {
+                _config.PositionY = value;
+                NotifyOfPropertyChange(nameof(PositionY));
+            }
+        }
+
         public bool StartWithWindows
         {
             get => _config.StartWithWindows;
@@ -59,7 +80,7 @@ namespace WinTermPlus.UI.ViewModels
             base.NotifyOfPropertyChange(propertyName);
 
             var process = WindowsTerminalProcess.Get();
-            process?.ResizeAndPositionWindow(_config.Size);
+            process?.ResizeAndPositionWindow(_config.Size, _config.Position);
         }
 
         public void Done()
